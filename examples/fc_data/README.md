@@ -1,0 +1,1 @@
+npy data 8weights, and bias) and generator python script

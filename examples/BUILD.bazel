@@ -24,6 +24,41 @@
 # Neon examples
 
 
+
+cc_binary(
+    name = "neon_mem_manager",
+    srcs = ["neon_mem_manager.cpp"],
+    copts = select({
+                  "//:arch_armv8-a": ["-march=armv8-a"],
+                  "//:arch_armv8.2-a+fp16": ["-march=armv8.2-a+fp16"],
+                  "//conditions:default": ["-march=armv8-a"],
+              }),
+    linkstatic = False,
+    deps = [
+        "//:arm_compute",
+        "//:arm_compute_graph",
+        "//include",
+        "//utils",
+    ],
+)                
+
+cc_binary(
+    name = "neon_fc_npy_data",
+    srcs = ["neon_fc_npy_data.cpp"],
+    copts = select({
+                  "//:arch_armv8-a": ["-march=armv8-a"],
+                  "//:arch_armv8.2-a+fp16": ["-march=armv8.2-a+fp16"],
+                  "//conditions:default": ["-march=armv8-a"],
+              }),
+    linkstatic = False,
+    deps = [
+        "//:arm_compute",
+        "//:arm_compute_graph",
+        "//include",
+        "//utils",
+    ],
+)        
+
 cc_binary(
     name = "neon_conv_fc",
     srcs = ["neon_conv_fc.cpp"],
